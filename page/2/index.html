@@ -6,19 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/10/03/hello-world/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-03T00:13:10.621Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Hexo">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -136,14 +132,548 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-三维点云特征提取的论文总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="三维点云特征提取的论文总结"><a href="#三维点云特征提取的论文总结" class="headerlink" title="三维点云特征提取的论文总结"></a>三维点云特征提取的论文总结</h1><hr>
+<h2 id="从三维点云数据中提取物体特征点的研究"><a href="#从三维点云数据中提取物体特征点的研究" class="headerlink" title="从三维点云数据中提取物体特征点的研究"></a>从三维点云数据中提取物体特征点的研究</h2><p>该方法在分析特征点,特征线提取技术的基础上,提出一种从三维空间二次曲面方程中估算一点的平均曲率的新方法,利用平均曲率和视点来提取点云模型的特征点。首先计算一点的k-邻近点,并求出经过这k个点的三维空间二次曲面方程,结合经过该点法线的两个正交平面来估算该点的平均曲率,平均曲率大于给定阈值的点是一类特征点；另一类特征点是由法向量和视线向量的内积决定的,内积小于给定阈值的点称为特征点。将这两种特征点作为最后点云模型的特征点。</p>
+<p>1.特征点提取技术<br>三维模型的特征点就是那些能够表示物体几何特性或纹理特征的那些点的 集合。这些特征点又可以分为模型固有的特征点和与视点相关的特征点。</p>
+<p>特征点定义<br>（1）模型固有特征点就是三维点云模型表面几何属性变化比较大的那些点的集 合。几何属性一般包括采样点的法向量和曲率,在点云模型的特征提取中,可以 根据点采样曲面中各点的曲率大小来提取特征点或特征线’〕。例如脊点和谷点 就是曲面曲率的极值点,这些点是模型表面的重要特征点,但是它们看起来不是 那么自然。它们固定在模型表面上,不随视点的变化而变化。<br>（2）视点相关的特征点包括很多,没有一个全面的定义,口前还在不断的出现新 的与视点相关的特征点。其中最主要的是这样一类特征点三维点云模型中采样 点的法线方向和视线方向垂直的那些点的集合。如图一所示,点云中一点 ,,。及其法线二,,,凡,点到视点的视向量,,如果。和垂直, 即和的内积为零,就称点几是点云模型的特征点。</p>
+<p><img src="D:\myblog\images\Image38.png" alt=""></p>
+<p>特征点提取方法<br>利用点间法线变化提取特征点<br>如果点云模型中一点的法线与其周围点法线的夹角，角度大于给定的阈值，就认为该点是点云模型上的特征。步骤如下：<br>（1）给定一点P，计算其k-邻近；<br>（2）估计P点的单位法线n，及周围k个点的单位法线ni<br>（3）给定阈值T，如果n与所有ni的内积的绝对值都大于T，我们认为P不是点云模型的特征点，标记个0,<br>遍历所有点，所有未标记0的点就是特征点</p>
+<p>利用视点相关的特征点两类：<br>第一类是轮廓点，这些点上的法线与视线向量垂直 ，轮廓点 几乎是无处不在,它们是模型可见部分与不可见部分的分界点。轮廓点传递出光 滑物体最突出的形状, ，主要使用轮廓点来增强模型的形状。使用<img src="D:\myblog\images\Image39.png" alt="">公式来提取轮廓点。</p>
+<p>第二类是提示性轮廓点，</p>
+<p><img src="D:\myblog\images\Image40.png" alt=""></p>
+<p><img src="D:\myblog\images\Image41.png" alt=""></p>
+<p>2.特征线提取技术</p>
+<p>3.利用近似平均曲率提取散乱点云模型特征点的快速算法<br>计算三维空间的二次曲面方程，计算其平均曲率，筛选小于某一阈值的点</p>
+<hr>
+<h2 id="基于三维点云的树木分类研究"><a href="#基于三维点云的树木分类研究" class="headerlink" title="基于三维点云的树木分类研究"></a>基于三维点云的树木分类研究</h2><p>树形特征在这里是指，根据人类本身对树木分类的 认识，与扫描的点云数据相结合，将人类依据树木形态进行分类识别的感性知识转化成 相对应的点云数据的特征计算，这些特征与人类对不同树木进行分类的依据紧密相关。</p>
+<p>将树木 3D 点云数据投影到 m × n × t 的立方体方格中，以 3D 点云数 据投影在 x-y 二维平面上的方格个数代表树冠面积，再通过向 x-y 平面四周延伸及沿 z 轴方向扩展，计算在 z 轴上不同的高度的投影面积值，通过相邻层间的面积差值的变化， 可得到树干和树冠的近似高度</p>
+<p>pca分析法</p>
+<p>主要思想是选择样本点分布方差大的坐标轴进行投影，来降低 维数而使信息量损失最少，这样就把问题转化为求样本数据协方差矩阵的特征值问题。 方差大的就是树干和树叶分离的地方</p>
+<p>基于点云法向量的特征提取</p>
+<p>点云中单个点的法向量一般是通过查找其近邻的 k 个点，将这些点构成的平面的法 向量近似代替为所求点的法向量。计算该点法向量与 z 轴的较小的夹角值</p>
+<p>不同树的树冠中每个点法向量与 z 轴夹角小于 10 度的点数所占比例不一样</p>
+<hr>
+<h2 id="三维点云数据的几何特性估算与特征识别"><a href="#三维点云数据的几何特性估算与特征识别" class="headerlink" title="三维点云数据的几何特性估算与特征识别"></a>三维点云数据的几何特性估算与特征识别</h2><p>由于实际物体形状的复杂性,其表面的曲线和曲面大都是由多个片段连接组合而 成的。在这些曲线之间和曲面之间的边界连接处,往往存在着不同程度的几何连续性<br>丢失。这种几何连续性的丢失通常又称为曲线和曲面的几何不连续性。几何不连续性 一般可分为三类零阶不连续不连续、一阶不连续不连续、二阶不连续 不连续。在。不连续处,位置不连续在不连续处,位置连续,法向量不连 续在不连续处,位置和法向量均连续,曲率不连续。</p>
+<p>物体表面的三维点云数据通常也包含了许多几何不连续处,这些几何不连续处 以离散点的形式展现,所以通常又称之为几何不连续点不连续点、不连续 点、不连续点。这些几何不连续点往往充分体现了物体表面的形状特征,如角 点、拐点、脊线、棱线等,是特征识别的主要对象。由于三维点云数据的特征识别 对三维点云数据的多视配准和区域分割有着极其重要的作用,因此,近年来各国 学者提出了许多三维点云数据的特征识别方法队节·几,’乡一`〔司。其中,一部分方法利用 几何特性位置、法向量、曲率等估算直接从原始点云数据中识别出几何不连续</p>
+<hr>
+<h2 id="三维点云数据中的目标识别方法研究"><a href="#三维点云数据中的目标识别方法研究" class="headerlink" title="三维点云数据中的目标识别方法研究"></a>三维点云数据中的目标识别方法研究</h2><p>三维点云数据的特征提取方法主要分为两大类：1.利用法向量、曲率等点云的几何特性直接从三维点云数据中提取出相应的特征点。2.首先对三维点云数据进行三角形网络建模，再根据模型的双面角、外夹角和曲率等几何拓扑信息来提取点云数据中的特征点和特征面。</p>
+<p>法向量估算，曲率估算<br>1.利用Voroni协方差矩阵，估算点云的主曲率与主方向，通过不同的局部邻域迭代协方差矩阵找到特征点。<br>2.利用曲率一致性对三维点云中的特征进行提取：估算三维点云数据的主曲率和主方向，然后根据曲率极值寻找点云中方向不连续点；而对于深度不连续点，可以利用曲面法向量和视点的夹角进行识别。<br>3.首先是拟合出点云的离散曲面，然后根据曲面零阶矩阵与一阶矩阵来识别点云数据的尖锐特征。<br>4.在三维点云数据中的每个数据点的局部邻域内利用鲁棒移动最小二乘法进行局部局面拟合，然后求取当前点在局部曲面上的投影残差值，设定一个阈值，最后判断计算的投影残差值与给定的阈值的大小，最后根据残差值的大小筛选点云数据的特征点。<br>5.利用各种微分算子，结合磁滞函数，最后识别出三角形模型中的特征。</p>
+<p>基于法向量和主曲率的三维点云数据特征提取<br>对于现实中的物体，不同的物体</p>
+<p><img src="D:\myblog\images\Image42.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/三维点云特征提取的论文总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-关于激光雷达只能开启一次之后重启才能继续开的解决办法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#关于激光雷达只能开启一次之后重启才能继续开的解决办法#<br><a href="http://blog.csdn.net/u010811078/article/details/59483500" target="_blank" rel="noopener">http://blog.csdn.net/u010811078/article/details/59483500</a></p>
+<p>usb端口设置权限永久问题</p>
+<p><a href="http://www.linuxidc.com/Linux/2015-10/124388.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2015-10/124388.htm</a></p>
+<p><a href="www.cnblogs.com/CZM-/p/5925632.html">www.cnblogs.com/CZM-/p/5925632.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/关于激光雷达只能开启一次之后重启才能继续开的解决办法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-解决Gradle bulid慢的问题和Building gradle project info 一直卡住" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="解决Gradle-bulid慢的问题和Building-gradle-project-info-一直卡住"><a href="#解决Gradle-bulid慢的问题和Building-gradle-project-info-一直卡住" class="headerlink" title="解决Gradle bulid慢的问题和Building gradle project info 一直卡住"></a>解决Gradle bulid慢的问题和Building gradle project info 一直卡住</h1><h2 id="解决AndroidStudio导入项目在-Building-gradle-project-info-一直卡住"><a href="#解决AndroidStudio导入项目在-Building-gradle-project-info-一直卡住" class="headerlink" title="解决AndroidStudio导入项目在 Building gradle project info 一直卡住"></a>解决AndroidStudio导入项目在 Building gradle project info 一直卡住</h2><p>Android Studio导入项目的时候，一直卡在Building gradle project info这一步，主要原因还是因为被墙的结果。gradle官网虽然可以访问，但是速度连蜗牛都赶不上<br>我在官网用迅雷下载，速度还可以，估计是有人下载过了，迅雷服务器保存了这个文件，直接从迅雷下载来的。之所以这么想，是因为我直接使用浏览器自带下载一般就一直0kb/s。</p>
+<p><img src="D:\myblog\images\Image3.png" alt=""></p>
+<p>解决办法：主要有两种，一是直接下载gradle离线包，二是修改项目的gradle-wrapper.properties里的gradle版本为自己电脑已有的版本。</p>
+<p>第一种、离线包下载导入方式<br>查看所需gradle版本：打开C:\Users\用户名.gradle\wrapper\dists\gradle-x.xx-all\xxxxxxxxxxxx，如果里面的gradle-xx-all.zip不完整（如0KB），则说明下载不成功，需要下载离线包放置到该目录下。如下所示</p>
+<p><img src="D:\myblog\images\Image4.png" alt=""></p>
+<p>导入完成后，运行AS之后会自动解压，如下。重新打开项目就可以了~~</p>
+<p><img src="D:\myblog\images\Image4.png" alt=""></p>
+<p>第二种：修改gradle-wrapper.properties方式</p>
+<ol>
+<li>随便找一个你之前能够运行的AS项目</li>
+<li>打开项目的/gradle/wrapper/gradle-wrapper.properties文件</li>
+<li>复制最后一行distributionUrl这一整行的内容，例如：distributionUrl=<a href="https://services.gradle.org/distributions/gradle-2.8-all.zip，替换到你要导入的项目里的gradle-wrapper.properties文件中。" target="_blank" rel="noopener">https://services.gradle.org/distributions/gradle-2.8-all.zip，替换到你要导入的项目里的gradle-wrapper.properties文件中。</a></li>
+<li>重启Android Studio，重新导入项目就可以了~~</li>
+</ol>
+<h2 id="Gradle-bulid慢的解决方法——配置为离线模式"><a href="#Gradle-bulid慢的解决方法——配置为离线模式" class="headerlink" title="Gradle bulid慢的解决方法——配置为离线模式"></a>Gradle bulid慢的解决方法——配置为离线模式</h2><p>参考</p>
+<p><a href="http://stackoverflow.com/questions/29391421/android-studio-gradle-takes-too-long-to-build" title="Android Studio gradle takes too long to build" target="_blank" rel="noopener">http://stackoverflow.com/questions/29391421/android-studio-gradle-takes-too-long-to-build</a></p>
+<p><a href="http://www.jianshu.com/p/cd8fe9b16369" title="从Eclipse到AndroidStudio（四）Gradle基本配置" target="_blank" rel="noopener">http://www.jianshu.com/p/cd8fe9b16369</a></p>
+<p>Android Studio中Gradle设为离线模式<br>In Android Studio go to File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Gradle</p>
+<p>Check the ‘Offline work’ under ‘Global Gradle settings’<br>It will reduce 90% gradle build time.<br>设为离线模式，不会去maven库下载依赖的包，也就是说：</p>
+<ol>
+<li>如果你在包含maven库时使用了“+”号，例如 compile ‘com.tencent.bugly:crashreport:2.1.+’，那么不会每次都去检测使用有2.1.下的新版本</li>
+<li>新依赖的包，因为无法下载包，不能通过编译</li>
+</ol>
+<p><img src="D:\myblog\images\Image5.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/解决Gradle bulid慢的问题和Building gradle project info 一直卡住/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-关于androidstudio利用NDK进行opencv4android开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="关于androidstudio利用NDK进行opencv4android开发"><a href="#关于androidstudio利用NDK进行opencv4android开发" class="headerlink" title="关于androidstudio利用NDK进行opencv4android开发"></a>关于androidstudio利用NDK进行opencv4android开发</h1><p>上网找了androidstudio利用ndk进行opencv4android的开发，这些博客分成两种一类是介绍的纯java的opencv4android的环境配置，给出了他们自己的sample，比较成熟。第二类就是利用jni，这一块来讲技术还成熟，查了很多博客，就这一篇提供了sample，<a href="http://johnhany.net/2016/07/opencv-3-1-ndk-dev-on-android-studio-2/#dev-envir下载下来还需要自己配置很多环境，下面讲一下环境配置的问题。" target="_blank" rel="noopener">http://johnhany.net/2016/07/opencv-3-1-ndk-dev-on-android-studio-2/#dev-envir下载下来还需要自己配置很多环境，下面讲一下环境配置的问题。</a></p>
+<ol>
+<li>开发环境：win7 64位，Androidstudio2.1.2，jdk，opencv4android2.4.8，android ndk r12b</li>
+</ol>
+<p>本来昨天用的是Androidstudio2.0，结果看到这个博主说，Androidstudio2.x提供了instant run，这极大的简化了运行速度，每次只要没有修改jni的地方就不用重新build这个工程，直接点击run就可以略过这个gradle构建过程，这个构建过程是导致程序下到手机速度慢的原因。这个原理暂时没看，eclipse比Androidstudio跑程序快，但是如果说有了这个，那Androidstudio是远远超过了eclipse的。</p>
+<p>opencv4android还是选的2.4.8，这个只要在项目中把.mk文件里对应的opencv4android的sdk目录修改即可。</p>
+<p>android ndk r12是按照博主提供的配置的。</p>
+<ol start="2">
+<li>头开始是从ndk开始，ndk配置的比较顺利，之后配置gradle的version，</li>
+</ol>
+<p><img src="D:\myblog\images\Image18.png" alt=""></p>
+<ol start="3">
+<li>之后我把他在github上的例程导入，<a href="https://github.com/johnhany/OpenCV3JNI，导入时候，Androidstudio自动给我gradle构建，提示这个错误" target="_blank" rel="noopener">https://github.com/johnhany/OpenCV3JNI，导入时候，Androidstudio自动给我gradle构建，提示这个错误</a></li>
+</ol>
+<p><img src="D:\myblog\images\Image19.png" alt=""></p>
+<p>是构建工程时候出的错误，build tools的版本问题，点击install后，提示</p>
+<p><img src="D:\myblog\images\Image20.png" alt=""></p>
+<p>从stackoverflow上找到答案，</p>
+<p><img src="D:\myblog\images\Image21.png" alt=""></p>
+<p>这里的build tools version修改成这个23.0.1，然后这个app文件夹下的build.gradle要修改这个地方与之对应</p>
+<p><img src="D:\myblog\images\Image22.png" alt=""></p>
+<p>之后重新gradle，错误解决。<br>接下来要在app\src\main\jni\Android.mk里修改opencv4Android的sdk路径，</p>
+<p><img src="D:\myblog\images\Image23.png" alt=""></p>
+<p>这之后，gradle跟环境配置方面已经完全搞定了，但是当我跑程序时候，居然出现了一个小问题，直接崩，logcat是这样的</p>
+<p><img src="D:\myblog\images\Image24.png" alt=""></p>
+<p>提示说不能打开这个.so类库，之后看博主的留言发现了解决办法，</p>
+<p><img src="D:\myblog\images\Image25.png" alt=""></p>
+<p>这里应当把 OPENCV_CAMERA_MODULES:=on<br>OPENCV_INSTALL_MODULES:=on<br>OPENCV_LIB_TYPE:=SHARED这三行放到导入opencv.mk路径之前，运行正常，问题解决，开心！爽！！这个问题据博主说是这样的：<br>opencv android sdk里面的OpenCV.mk，会发现文件里需要判断OPENCV_INSTALL_MODULES和OPENCV_LIB_TYPE的值来执行一些操作，但是值的声明对这个过程的影响可能和ndk相关的插件和库的版本有关吧。</p>
+<p>如果单纯做ndk开发，是不需要这两个文件的<img src="D:\myblog\images\Image26.png" alt="">，如果是opencv4android的时候，这两个文件要加上，includeopencv。mk 的路径。这个问题的解决方法是在yanzi的博客里第一次提出来的解释<a href="http://blog.csdn.net/yanzi1225627/article/details/50644903" target="_blank" rel="noopener">http://blog.csdn.net/yanzi1225627/article/details/50644903</a><br>昨天还遇见过一个问题，但是在今天配置的时候gradle估计提前把这个问题配置了，所以这个问题今天没出现，把解决方式发到这里来，以免以后再出现再次寻找<a href="http://blog.csdn.net/u012964796/article/details/47000991，http://blog.csdn.net/never_cxb/article/details/50520108" target="_blank" rel="noopener">http://blog.csdn.net/u012964796/article/details/47000991，http://blog.csdn.net/never_cxb/article/details/50520108</a><br>这个项目的github地址<a href="https://github.com/johnhany/OpenCV3JNI" target="_blank" rel="noopener">https://github.com/johnhany/OpenCV3JNI</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/关于androidstudio利用NDK进行opencv4android开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行"><a href="#从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行" class="headerlink" title="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行"></a>从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行</h1><p>这个问题其实很大部分都是安卓的问题，少部分是因为涉及jni。<br>首先说安卓上的问题，复制另一个程序中的代码，应当注意的地方：</p>
+<p>1.复制进去时候是在主类里的，而主类里setcontentview又和布局文件分不开，那么我在这里把类和布局文件一起讲。在主类里，要注意的地方：①包名<img src="D:\myblog\images\Image27.png" alt=""><br>最开始的地方，包名，不改会出错误，</p>
+<p>2.需要注意<img src="D:\myblog\images\Image28.png" alt="">这个地方，类名要匹配你新建工程时候的类名。匹配后，就算暂时会出错，也不是这里的错误，要去底下找了。</p>
+<p>3.在oncreate这个生命周期函数中，要记得这些函数的先后顺序，不然会进不去程序<img src="D:\myblog\images\Image29.png" alt="">在logcat里会报错<img src="D:\myblog\images\Image30.png" alt=""><img src="D:\myblog\images\Image31.png" alt="">布局文件要修改名字。要对应上。</p>
+<p>第二点要注意的地方是androidmanifest.xml文件下，这里需要注意的地方还是比较多的，而且都是比较不容易发现的坑人错误：</p>
+<p>1.首先是这个包名，<img src="D:\myblog\images\Image32.png" alt="">这个如果不改的话，就必须在MainActivity.java文件下import 你复制过来的这个包的.R文件，就是之前一直不太理解的那个import com.example.time.R与其这么麻烦的弄这个，还不如直接在MainActivity.java里用什么包名，直接就在AndroidManifest.xml文件下直接用什么包名。</p>
+<p>2.<img src="D:\myblog\images\Image33.png" alt="">接着就是在application里，需要注意的地方就是这个android:name=一定要是你自己定义的包名类名，而不是你复制过来，他的包名类名，这样程序会报错，根本进不去程序，抛出异常<br><img src="D:\myblog\images\Image34.png" alt=""><br>看异常类型是runtime异常，他说那意思不能实例化这个包的类，没有找到他这个类在这个路径下。<br>权限要注意<img src="D:\myblog\images\Image35.png" alt="">这个地方有可能会用到存储，读取sd卡，摄像头操作等权限问题，所以这些权限要加进去，也包括一些这个东西<img src="D:\myblog\images\Image36.png" alt=""></p>
+<p>第三点，一个比较容易忽视的地方，就是本地方法，c那边的程序头的地方<img src="D:\myblog\images\Image37.png" alt="">很容易忘记修改，这个地方要把jnicall后面改成与你包名类名方法名相对应。不然点击button时候，也会抛出异常，找不到本地对象。<br>最后就是环境配置了，该转换c的想着转换成c，再去加builder和ndk的一些设置和opencv4android的一些设置。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Parrot ARDrone的源码资源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Parrot-AR-Drone的源码资源"><a href="#Parrot-AR-Drone的源码资源" class="headerlink" title="Parrot AR.Drone的源码资源"></a>Parrot AR.Drone的源码资源</h1><ul>
+<li><a href="https://github.com/FalkorSystems/falkor_ardrone" target="_blank" rel="noopener">falkor_ardrone</a>包用于自动控制</li>
+<li><a href="http://www.ros.org/wiki/tum_ardrone" target="_blank" rel="noopener">tum_ardrone</a>包用于状态评估，自动驾驶和GUI控制</li>
+<li><a href="https://github.com/parcon/arl_ardrone_examples" target="_blank" rel="noopener">arl_ardrone_examples</a>包包含一系列的基础节点来展示如何开发应用</li>
+<li><a href="https://github.com/mikehamer/ardrone_tutorials" target="_blank" rel="noopener">AR Drone Tutorials</a>教程包含使用例子去起飞和飞行的源码</li>
+<li><a href="http://wiki.ros.org/tum_simulator" target="_blank" rel="noopener">tum_simulator</a>包使用Gazebo做仿真，兼容ardrone_autonomy</li>
+</ul>
+<p>falkor_ardrone:</p>
+<p>这个是ROS的包，用的官方提供的包在AR.Drone中实现自动控制功能，最初是官方的一部分，现在分出来了，老版本也在。</p>
+<p>tum_ardrone:</p>
+<p>两个窗口<br>1视频窗口和PTAM的地图点<br><img src="D:\myblog\images\ScreenClip2.png" alt=""></p>
+<p>2地图窗口<br><img src="D:\myblog\images\ScreenClip3.png" alt=""></p>
+<p>3GUI窗口<br><img src="D:\myblog\images\ScreenClip4.png" alt=""></p>
+<p>键盘控制需要切换到GUI窗口，按下esc立刻使能键盘控制</p>
+<p>qa：上下飞</p>
+<p>ijkl：水平飞</p>
+<p>uo：水平转向</p>
+<p>f1：紧急关闭</p>
+<p>s：起飞</p>
+<p>d：降落</p>
+<p>Autopilot Control：<br>在左上方的编辑框内写命令，单击发送，到自动驾驶仪的命令队列（自动设置控制源为自动控制）</p>
+<p>单击clear是清除的自动驾驶的命令队列和当前的命令</p>
+<p>单击Reset复位自动驾驶仪，PTAM和EKF<br>右上方是重要话题的发布频率，</p>
+<p>校准前和底相机：<br>    rosrun camera_calibration cameracalibrator.py –size [SIZE] –square [SQUARESIZE] image:=/ardrone/front/image_raw camera:=/ardrone/front</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/Parrot ARDrone的源码资源/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ROS调试常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ROS调试常用命令"><a href="#ROS调试常用命令" class="headerlink" title="ROS调试常用命令"></a>ROS调试常用命令</h1><p>rosnode 显示当前运行的ROS节点信息。rosnode list 指令列出活跃的节点:</p>
+<p><code>$ rosnode list</code></p>
+<p>rosnode info 命令返回的是关于一个特定节点的信息。</p>
+<pre><code>$ rosnode info 节点名
+</code></pre><p>使用另外一个 rosnode 指令, ping, 来测试:</p>
+<pre><code>$ rosnode ping 节点名
+</code></pre><p>查看图形化的节点话题，每次发布消息时候，可能需要再刷新一下这个gui才可以显示新的</p>
+<pre><code>$ rosrun rqt_graph rqt_graph
+</code></pre><p>rostopic echo可以显示在某个话题上发布的数据。要等到话题发布消息的时候，才会有数据。</p>
+<pre><code>rostopic echo [topic]
+</code></pre><p>rostopic list能够列出所有当前订阅和发布的话题。</p>
+<p>显示出有关所发布和订阅的话题及其类型的详细信息。</p>
+<pre><code>$ rostopic list -v
+</code></pre><p>rostopic type 命令用来查看所发布话题的消息类型。</p>
+<pre><code>$ rostopic type [topic]
+</code></pre><p>我们可以使用rosmsg命令来查看消息的详细情况</p>
+<p><code>$ rosmsg show</code> 这个地方应该是和话题类型一样</p>
+<p><code>rostopic pub</code>可以把数据发布到当前某个正在广播的话题上。</p>
+<p><code>rostopic hz</code>命令可以用来查看数据发布的频率。</p>
+<p><code>rqt_plot</code>命令可以实时显示一个发布到某个话题上的数据变化图形。</p>
+<pre><code>$ rosrun rqt_plot rqt_plot
+</code></pre><p><code>rosservice list</code>         输出可用服务的信息<br><code>rosservice type</code>         输出服务类型<br><code>rosservice call</code>         调用带参数的服务</p>
+<p>rosparam使得我们能够存储并操作ROS 参数服务器（Parameter Server）上的数据。</p>
+<p><code>rosparam set</code>            设置参数<br><code>rosparam get</code>            获取参数<br><code>rosparam load</code>           从文件读取参数<br><code>rosparam dump</code>           向文件中写入参数<br><code>rosparam delete</code>         删除参数<br><code>rosparam list</code>           列出参数名，查看节点在参数服务器上有几个参数</p>
+<p>建立一个用于录制的临时目录，然后在该目录下运行rosbag record命令，并附加-a选项，该选项表示将当前发布的所有话题数据都录制保存到一个bag文件中。<br>现在检查看这个临时中的内容，你应该会看到一个以年份、日期和时间命名并以.bag作为后缀的文件。这个就是bag文件，它包含rosbag record运行期间所有节点发布的话题。</p>
+<pre><code>rosbag record -a
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/ROS调试常用命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux系统的一些常用软件及安装方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="linux系统的一些常用软件及安装方法"><a href="#linux系统的一些常用软件及安装方法" class="headerlink" title="linux系统的一些常用软件及安装方法"></a>linux系统的一些常用软件及安装方法</h1><ol>
+<li>notepad++</li>
+</ol>
+<p>对于Ubuntu发行版本可以通过PPA安装，命令如下：</p>
+<pre><code>sudo add-apt-repository ppa:notepadqq-team/notepadqq
+
+sudo apt-get update
+
+sudo apt-get install notepadqq
+</code></pre><p>类似的，卸载命令如下：</p>
+<pre><code>sudo apt-get remove notepadqq
+
+sudo add-apt-repository --remove ppa:notepadqq-team/notepadqq
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/linux系统的一些常用软件及安装方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Hello World
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/03/hello-world/">Hello World</a>
     </h1>
   
 
@@ -169,27 +699,6 @@
       
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
     </div>
     <div class="article-info article-info-index">
       
@@ -197,79 +706,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/03/hello-world/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/10/03/hello-world/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/11/22/linux系统的一些常用软件及安装方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -289,14 +735,12 @@
 
 
 
-  
-  
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -319,8 +763,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

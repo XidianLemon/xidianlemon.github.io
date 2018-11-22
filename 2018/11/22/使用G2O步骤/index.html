@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="使用G2o步骤  // 选择优化方法    typedef g2o::BlockSolver_6_3 SlamBlockSolver;    typedef g2o::LinearSolverCSparse&amp;lt; SlamBlockSolver::PoseMatrixType &amp;gt; SlamLinearSolver; // 初始化求解器 SlamLinearSolver* linearSol">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/10/03/hello-world/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/使用G2O步骤/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="使用G2o步骤  // 选择优化方法    typedef g2o::BlockSolver_6_3 SlamBlockSolver;    typedef g2o::LinearSolverCSparse&amp;lt; SlamBlockSolver::PoseMatrixType &amp;gt; SlamLinearSolver; // 初始化求解器 SlamLinearSolver* linearSol">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-03T00:13:10.621Z">
+<meta property="og:updated_time" content="2018-11-16T03:26:51.958Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="使用G2o步骤  // 选择优化方法    typedef g2o::BlockSolver_6_3 SlamBlockSolver;    typedef g2o::LinearSolverCSparse&amp;lt; SlamBlockSolver::PoseMatrixType &amp;gt; SlamLinearSolver; // 初始化求解器 SlamLinearSolver* linearSol">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -136,35 +136,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用G2O步骤" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Hello World
-    </h1>
-  
-
-        
-        <a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="使用G2o步骤"><a href="#使用G2o步骤" class="headerlink" title="使用G2o步骤"></a>使用G2o步骤</h1><blockquote>
+<p> // 选择优化方法</p>
+</blockquote>
+<blockquote>
+<p> <code>typedef g2o::BlockSolver_6_3 SlamBlockSolver;</code></p>
+</blockquote>
+<blockquote>
+<p> <code>typedef g2o::LinearSolverCSparse&lt; SlamBlockSolver::PoseMatrixType &gt; SlamLinearSolver;</code><br> // 初始化求解器<br> <code>SlamLinearSolver* linearSolver = new SlamLinearSolver();</code><br> <code>linearSolver-&gt;setBlockOrdering( false );</code><br> <code>SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );</code><br> <code>g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );</code><br> <code>g2o::SparseOptimizer globalOptimizer;</code>// 最后用的就是这个东东<br> <code>globalOptimizer.setAlgorithm( solver );</code></p>
+<p> // 不要输出调试信息</p>
+<p> <code>globalOptimizer.setVerbose( false );</code></p>
+</blockquote>
+<p>然后，在求解器内添加点和边：</p>
+<blockquote>
+<p>// 添加点</p>
+</blockquote>
+<blockquote>
+<p>g2o::VertexSE3* v = new g2o::VertexSE3();</p>
+</blockquote>
+<blockquote>
+<p>// 设置点v …</p>
+</blockquote>
+<blockquote>
+<p>globalOptimizer.addVertex( v );</p>
+</blockquote>
+<blockquote>
+<p>// 添加边</p>
+</blockquote>
+<blockquote>
+<p>g2o::EdgeSE3* edge = new g2o::EdgeSE3();</p>
+</blockquote>
+<blockquote>
+<p>// 设置边 edge …</p>
+</blockquote>
+<blockquote>
+<p>globalOptimizer.addEdge(edge);</p>
+</blockquote>
+<p>最后，完成优化并存储优化结果：</p>
+<blockquote>
+<p> globalOptimizer.save(“./data/result_before.g2o”);</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.initializeOptimization();</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.optimize( 100 ); //可以指定优化步数</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.save( “./data/result_after.g2o” );</p>
+</blockquote>
+<p>关于代码的一些解释：</p>
+<ol>
+<li>顶点和边的类型</li>
+</ol>
+<p>顶点和边有不同的类型，这要看我们想求解什么问题。由于我们是3D的slam，所以顶点取成了相机姿态：g2o::VertexSE3，而边则是连接两个VertexSE3的边：g2o::EdgeSE3。如果你想用别的类型的顶点（如2Dslam，路标点），你可以看看/usr/local/include/g2o/types/下的文件，基本上涵盖了各种slam的应用，应该能满足你的需求。</p>
+<p>2.优化方法</p>
+<p>g2o允许你使用不同的优化求解器（然而实际效果似乎差别不大）。你可以选用csparse, pcg, cholmod等等。我们这里使用csparse为例啦。</p>
+<p>他们代码里slam步骤</p>
+<ol>
+<li>初始化关键帧序列：FF，并将第一帧f0f0放入FF。</li>
+<li>对于新来的一帧II，计算FF中最后一帧与II的运动，并估计该运动的大小ee。有以下几种可能性：</li>
+</ol>
+<ul>
+<li>若e&gt;Eerrore&gt;Eerror，说明运动太大，可能是计算错误，丢弃该帧； </li>
+<li>若没有匹配上（match太少），说明该帧图像质量不高，丢弃； </li>
+<li>若e&lt;Ekeye&lt;Ekey，说明离前一个关键帧很近，同样丢弃；</li>
+<li>剩下的情况，只有是特征匹配成功，运动估计正确，同时又离上一个关键帧有一定距离，则把II作为新的关键帧，进入回环检测程序：</li>
+</ul>
+<p>近距离回环：匹配II与FF末尾mm个关键帧。匹配成功时，在图里增加一条边。</p>
+<p>随机回环：随机在FF里取nn个帧，与II进行匹配。若匹配上，在图里增加一条边。</p>
+<p>将II放入FF末尾。若有新的数据，则回2； 若无，则进行优化与地图拼接。</p>
 
       
 
@@ -244,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/10/03/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/使用G2O步骤/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,7 +304,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/11/22/linux系统的一些常用软件及安装方法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/22/使用G2O的总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -267,6 +313,11 @@
       </div>
     </a>
   
+  
+    <a href="/2018/11/22/三维点云特征提取的论文总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

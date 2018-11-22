@@ -134,35 +134,27 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ARDrone跑通tum_ardrone的包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="关于跑通AR-Drone的tum-ardrone包"><a href="#关于跑通AR-Drone的tum-ardrone包" class="headerlink" title="关于跑通AR.Drone的tum_ardrone包"></a>关于跑通AR.Drone的tum_ardrone包</h1><p>AR.Drone无人机的例程中tum_ardrone是一个ptam的包，他在ros中的网站如下<br><a href="http://wiki.ros.org/tum_ardrone" target="_blank" rel="noopener">http://wiki.ros.org/tum_ardrone</a></p>
+<p>注意，一定要下载你对应的ros版本的包如：indigo/groovy等</p>
+<p>ros网站有人专门提问ubuntu14.04，ROS Indigo版本能否适用这个包，</p>
+<p><a href="http://answers.ros.org/question/201254/is-tum_ardrone-available-in-ros-indigo/" target="_blank" rel="noopener">http://answers.ros.org/question/201254/is-tum_ardrone-available-in-ros-indigo/</a></p>
+<p>有人回答works fine。现在介绍一下正确使用tum_ardrone的包的方法，</p>
+<p>这里是在2016年11月30号写的，之后没有更新过。</p>
+<pre><code>cd catkin_ws/src
+git clone https://github.com/tum-vision/tum_ardrone.git -b hydro-devel
+cd ..
+rosdep install tum_ardrone
+catkin_make
+</code></pre><p>注意，这里要把hydro改成indigo也就是第二行应该写成</p>
+<pre><code>git clone https://github.com/tum-vision/tum_ardrone.git -b hydro-devel
+</code></pre><p>执行rosdep时候可能会失败，原因是没有source，然后catkin_make时候提示缺少一个东西，我在这里找到的答案<a href="https://github.com/tum-vision/tum_ardrone/issues/76" target="_blank" rel="noopener">https://github.com/tum-vision/tum_ardrone/issues/76</a>，使用这个命令就可以解决</p>
+<p><code>sudo apt-get install freeglut3-dev</code></p>
+<p>这之后就可以正常运行了。</p>
 
       
 
@@ -175,7 +167,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/03/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/22/ARDrone跑通tum_ardrone的包/">展开全文 >></a>
         </p>
       
 
@@ -205,6 +197,667 @@
 
 
   
+    <article id="post-做opencv4android时的小问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文写于2016年年中，当时的AS还没有对ndk支持的很好，尤其对于opencv4android不稳定，就连opencv官方也说不建议用AS，而我在搞定这个项目后就没再做ndk开发相关，因此只留下了使用Eclipse做opencv4android的记录。</p>
+<p>用Eclipse做opencv4android，设置环境的时候，右键工程properties</p>
+<p><img src="D:\myblog\images\Image1.png" alt=""></p>
+<p>如图这个<img src="D:\myblog\images\Image2.png" alt="">（2）是整个这个workplace里的builder编号排序，而不是单指这个project里的builder。<br>之前一直以为是这个project里的，以为他这个new_builder存在，但是不可见。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/做opencv4android时的小问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-有关激光雷达、电机、IMU通过USB连接电脑的权限问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有关激光雷达、电机、IMU通过USB连接电脑的权限问题"><a href="#有关激光雷达、电机、IMU通过USB连接电脑的权限问题" class="headerlink" title="有关激光雷达、电机、IMU通过USB连接电脑的权限问题"></a>有关激光雷达、电机、IMU通过USB连接电脑的权限问题</h1><p>记得在用imu、激光雷达、电机插usb的时候，都需要用 sudo chmod a+rw /dev/ttyUSB<br>具体是USB几，需要使用<code>ls /dev/tty</code>来</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/有关激光雷达、电机、IMU通过USB连接电脑的权限问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-有关对G20的总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有关对G20的总结"><a href="#有关对G20的总结" class="headerlink" title="有关对G20的总结"></a>有关对G20的总结</h1><p>本文参考高翔的博客</p>
+<p>使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。</p>
+<p>第一类：视觉slam使用g2o步骤</p>
+<p><img src="D:\myblog\images\Image6.png" alt=""></p>
+<ol>
+<li>要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.<br>程序部分</li>
+<li>首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的索引；（2）endIndex，读第二张图片的索引，也就是终止的索引；（3）所有关键帧存放的容器keyframes。</li>
+<li>令当前索引为起始索引，提取当前帧的特征点和特征描述子，</li>
+<li>g2o初始化，（1）选择优化方法；（2）初始化求解器；（3）声明g2o优化对象globalOptimizer；（4）向globalOptimizer增加第一个顶点设置其Id，参数是当前索引。将第一个顶点固定，不用优化。</li>
+<li>循环：将图片当前帧放入关键帧中，读下一帧，提取当前帧的特征点和特征描述子。检测其是否是关键帧，不符合条件就跳过，符合就做闭环检测。检测过程如下：（1）计算两帧之间的运动，太近太远都不算匹配上；（2）如果不是闭环，就向g2o中增加这个顶点设置其Id还有上一帧联系的边，并设置连接此边的两个顶点的Id，将此边加入图。</li>
+<li>当前帧如果符合关键帧要求就加入关键帧keyframes。</li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+<li>还要记得修改cmakelist文件如下</li>
+</ol>
+<p><code>cmake_minimum_required(VERSION 2.8)</code><br>    project(g2o_test)<br><code>#Enable support for C++11</code><br><code>SET(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -std=c++0x&quot;)</code><br><code>#设定二进制文件路径</code><br><code>SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)</code><br><code>#设定库文件编译路径</code><br><code>SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)</code><br><code>#设定.cmake文件存放路径</code><br><code>#SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} &quot;{CMAKE_CURRENT_SOURCE_DIR}/cmake_modules&quot;)</code><br><code>LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)</code><br><code>#ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/src)</code><br><code># find g2o lib</code><br><code>find_package(G2O REQUIRED)</code><br><code>IF(G2O_FOUND)</code><br><code>include_directories(${G2O_INCLUDE_DIR})</code><br><code>message(&quot;G2O lib is found:&quot;${G2O_INCLUDE_DIR})</code><br><code>ENDIF(G2O_FOUND)</code><br><code>find_package(Eigen3 REQUIRED)</code><br><code>find_package(CSparse REQUIRED)</code><br><code>#find_package(Cholmod REQUIRED)</code><br><code>include_directories(${CSPARSE_INCLUDE_DIR})</code><br><code>include_directories(${EIGEN3_INCLUDE_DIR})</code><br><code>#include_directories(${CHOLMOD_INCLUDE_DIR})</code><br><code>SET(G2O_LIBS g2o_cli g2o_ext_freeglut_minimal g2o_simulator</code> <code>g2o_solver_slam2d_linear g2o_types_icp g2o_types_slam2d g2o_core g2o_interface g2o_solver_csparse g2o_solver_structure_only g2o_types_sba g2o_types_slam3d g2o_csparse_extension g2o_opengl_helper g2o_solver_dense g2o_stuff g2o_types_sclam2d g2o_parser g2o_solver_pcg g2o_types_data g2o_types_sim3 cxsparse )</code></p>
+<p>第二类：将顶点与边放入.g2o文件中，如下图形式：</p>
+<p><img src="D:\myblog\images\Image8.png" alt=""></p>
+<p>这样省去了添加顶点和边的步骤。我目前将loam中的transformMaintenance节点中</p>
+<p><img src="D:\myblog\images\Image9.png" alt=""></p>
+<p>这一段代码中所有的变量作为顶点，放入到图中，本来想存为txt，但是catkin_make时报错，因此目前只能打印出来，并且由于pubLaserOdometry2Pointer-&gt;publish(laserOdometry2);的频率是10hz，所以我降采样为1hz，在以前长的走廊中重新进行实验，将这些变量打印到命令行中，我手动存入txt，然后按照.g2o文件中的格式作为顶点放入。</p>
+<ol>
+<li>使用 宏函数 声明边和顶点类型，注意注释掉了上面两个头文件<br><code>#include &quot;g2o/types/slam3d/vertex_se3.h&quot;</code><br><code>G2O_USE_TYPE_GROUP(slam3d);</code></li>
+<li>选择优化方法，初始化求解器，声明g2o优化对象globalOptimizer；load文件。 <code>globalOptimizer.load(&quot;./data/test.g2o&quot;)</code></li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+</ol>
+<p>其中”./data/test.g2o’文件点是位姿，边是姿态变换。</p>
+<p>用的他之前自带的边，就是说g2o官方例程提供的边的定义。这样做了之后，目前已经可以优化了，但是边不对，优化的一定是不对的。<br>目前存在的问题是，点在slam使用g2o方法中的含义是：当前的位姿，而边在slam使用g2o方法中的含义是两帧间的运动，我不理解的问题是：我现在点有了，边在视觉slam中是两帧间的运动，那我的边是啥，指定了边，就可以正确地优化了。（目前已经确定边是姿态变换，也就是运动估计）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/有关对G20的总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-下到的源码有个_MACOSX文件夹" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="下到的源码有个-MACOSX文件夹"><a href="#下到的源码有个-MACOSX文件夹" class="headerlink" title="下到的源码有个_MACOSX文件夹"></a>下到的源码有个_MACOSX文件夹</h1><p>有这个文件夹说明他是苹果电脑上压缩的，里面全是压缩信息如果不用苹果完全 可以把它删掉；如果用苹果，删掉就打不开这个文件了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/下到的源码有个_MACOSX文件夹/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-有关G2O安装和高翔G2O博客的总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有关G2O安装和高翔G2O博客的总结"><a href="#有关G2O安装和高翔G2O博客的总结" class="headerlink" title="有关G2O安装和高翔G2O博客的总结"></a>有关G2O安装和高翔G2O博客的总结</h1><p>g2o官方下的始终配置不好，后来找到gaoxiang的github地址，下载了他给的g2o，还有一个东西叫qglviewer，安装之后，进入到他g2o文件夹下，新建build文件，然后使用命令ccmake ..将下图中的 把G2O_BUILD_APPS关掉<br>，这个东西是g2o_viewer，不用他了，</p>
+<p><img src="D:\myblog\images\Image10.png" alt=""></p>
+<p>然后按c配置，再按q退出。之后使用make命令。这样g2o安装完成。<br>注意：这里不能用命令：cmake ..因为运行这个命令之后报错编译不过，是因为目前最新版本的qglviewer使用的是基于qt5，而ubuntu14.04默认是qt4。</p>
+<p>目前不能使用g2o_viewer这个gui，因为他也是基于qt5的。</p>
+<p>运行他给的例程的时候，他给出的<img src="D:\myblog\images\Image11.png" alt="">不能放在他的例程下，因为他的例程好像使用了希腊字母，I V，导致文件找不到，我将其放到了另一个文件夹下就好用了。当时出现的提示是这样的：</p>
+<p><img src="D:\myblog\images\Image12.png" alt=""></p>
+<p>一定要进入他的文件夹下，</p>
+<p><img src="D:\myblog\images\Image13.png" alt=""></p>
+<p>在这里使用bin/generate_pointcloud等命令来运行他的二进制文件。</p>
+<p>在运行例程5的时候，出现点云不显示的问题，这时在pcd_viewer窗口下按r键来重置视角快速查看点云。</p>
+<p>关于图像上下翻转问题，是因为opencv定义的坐标系和pcl_viewer显示坐标系不同，opencv是x右y下，而pcl显示是x右y上。解决方法：找到群主程序image2PointCloud函数中，把计算点空间坐标的公式的p.y值添加负号，这样y方向就可以正常显示了</p>
+<p>opencv版本要用2.4.x的，不能用最新的3.x的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/有关G2O安装和高翔G2O博客的总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-树莓派3安装ROS（indigo）技术文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="树莓派3安装ROS（indigo）技术文档"><a href="#树莓派3安装ROS（indigo）技术文档" class="headerlink" title="树莓派3安装ROS（indigo）技术文档"></a>树莓派3安装ROS（indigo）技术文档</h1><h2 id="一、硬件"><a href="#一、硬件" class="headerlink" title="一、硬件"></a>一、硬件</h2><ol>
+<li>Raspberry Pi 3 Model B树莓派3代B型</li>
+</ol>
+<p><img src="D:\myblog\images\Image14.png" alt=""></p>
+<ol start="2">
+<li>DVI转HDMI线或者HDMI转VGA转接头</li>
+</ol>
+<p><img src="D:\myblog\images\Image15.png" alt=""></p>
+<ol start="3">
+<li>32G内存卡</li>
+</ol>
+<p><img src="D:\myblog\images\Image16.png" alt=""></p>
+<h2 id="二、软件"><a href="#二、软件" class="headerlink" title="二、软件"></a>二、软件</h2><p>Raspbian系统镜像，Raspbian Jessie with Desktop，下载地址<a href="https://www.raspberrypi.org/downloads/raspbian/，最好从官网下载最新的。" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/raspbian/，最好从官网下载最新的。</a></p>
+<h2 id="三、安装过程"><a href="#三、安装过程" class="headerlink" title="三、安装过程"></a>三、安装过程</h2><ol>
+<li>下载Jessie镜像，从官网下载Raspbian Jessie with Desktop最新版本；</li>
+<li>下载 Win32DiskImager软件并安装，格式化SD卡为FAT32格式，启动Win32DiskImager<br><img src="D:\myblog\images\Image17.png" alt="">；</li>
+<li>在上图 Image File处选择下载好的Raspbian系统镜像，点write开始系统写入，完成后将SD卡插入树莓派；</li>
+<li>修改交换空间大小<br><code>sudo nano /etc/dphys-swapfile</code><br>找到CONF_SWAPSIZE=100，修改为 CONF_SWAPSIZE=1024<br>修改完后重启树莓派才能生效</li>
+<li>添加ros仓库路径，官网教程给出的是国外的地址，试验几次找到一个最快的国内镜像<br><code>sudo sh -c &#39;echo &quot;deb http://mirrors.ustc.edu.cn/ros/ubuntu jessie main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;
+wget https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -O - | sudo apt-key add -</code></li>
+<li>更新软件包，这一步会执行一段时间，但是不能跳过，否则后面会报错<br><code>sudo apt-get update</code><br><code>sudo apt-get upgrade</code>；</li>
+<li>安装相关依赖包<br><code>sudo apt-get install python-pip python-setuptools python-yaml python-distribute python-docutils python-dateutil python-six</code><br><code>sudo pip install rosdep rosinstall_generator wstool rosinstall</code></li>
+<li>创建工作空间用于编译ROS源码</li>
+</ol>
+<p><code>mkdir ~/ros_catkin_ws</code></p>
+<p><code>cd ~/ros_catkin_ws</code></p>
+<p>9.下载并安装完整版的ROS<br><code>rosinstall_generator desktop --rosdistro indigo --deps --wet-only --exclude roslisp collada_parser collada_urdf --tar &gt; indigo-desktop-wet.rosinstall</code></p>
+<p><code>wstool init src indigo-desktop-wet.rosinstall -j8</code></p>
+<p>（这条命令中的-j8的意思是用8个线程下载以提高下载速度）<br>如果中途下载中断，可以使用下面的命令恢复下载，如果不确定是否完全下载也可以用下面的命令来检测</p>
+<p><code>wstool update -t src</code></p>
+<ol start="10">
+<li>在~/ros_catki</li>
+</ol>
+<blockquote>
+<p>n_ws/src/rviz/src/rviz/mesh_loader.cpp中添加下面几行代码：<br><code># ifdef __arm__ // fix for ARM build</code><br><code>#include &lt;strings.h&gt;</code><br><code>bool Assimp::IOSystem::ComparePaths(const char *p1,constchar *p2) const</code><br><code>{</code><br><code>return!::strcasecmp(p1, p2);</code><br><code>}</code><br><code># endif</code></p>
+</blockquote>
+<p>将这几行加在头文件声明结束的后面，如下：</p>
+<blockquote>
+<p><code>#include &lt;assimp/aiScene.h&gt;</code><br><code>#include &lt;assimp/aiPostProcess.h&gt;</code><br><code>#include &lt;assimp/IOStream.h&gt;</code><br><code>#include &lt;assimp/IOSystem.h&gt;</code><br><code>#endif#  ifdef __arm__                 // fix for ARM build#include &lt;strings.h&gt;bool Assimp::IOSystem::ComparePaths(const char *p1, const char *p2) const</code><br><code>{</code><br><code>return !::strcasecmp(p1, p2);</code><br><code>}</code><br><code>#  endifnamespace fs = boost::filesystem;</code><br><code>namespace rviz</code></p>
+</blockquote>
+<ol start="11">
+<li><p>删除~/ros_catkin_ws/src/robot_model文件夹和文件夹下的所有文件</p>
+</li>
+<li><p>寻找所有src目录的package并递归安装依赖</p>
+</li>
+</ol>
+<p><code>cd ~/ros_catkin_ws</code></p>
+<p><code>rosdep install --from-paths src --ignore-src --rosdistro indigo -y -r --os=debian:jessie</code></p>
+<ol start="13">
+<li>编译整个ROS源码的工作空间</li>
+</ol>
+<p><code>cd ~/ros_catkin_ws</code></p>
+<p><code>sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/indigo -j2</code>（这条命令中-j2的意思是设定树莓派使用两个核心编译，默认是4个核心编译，会死机）<br>这一步的编译过程需要几个小时才能够完成</p>
+<ol start="14">
+<li>编译完成后设置ROS的环境变量<br><code>source /opt/ros/indigo/setup.bash</code><br>再运行roscore，能够成功运行说明已经安装成功！</li>
+</ol>
+<h2 id="四、所遇到的问题与解决办法"><a href="#四、所遇到的问题与解决办法" class="headerlink" title="四、所遇到的问题与解决办法"></a>四、所遇到的问题与解决办法</h2><ol>
+<li>使用HDMI转VGA转接头显示器黑屏</li>
+</ol>
+<p>解决办法：树莓派默认可用HDMI转DVI的线连接显示器，如果用HDMI转VGA转接头需要修改/boot/config.txt文件，首先通过HDMI转DVI的线连接显示器，然后执行以下命令<br>sudo nano /boot/config.txt，将下面代码贴到文件的最底下</p>
+<blockquote>
+<p><code>hdmi_force_hotplug=1</code></p>
+<p><code>config_hdmi_boost=4</code></p>
+<p><code>hdmi_group=2</code></p>
+<p><code>hdmi_mode=9</code></p>
+<p><code>hdmi_drive=2</code></p>
+<p><code>hdmi_ignore_edid=0xa5000080</code></p>
+<p><code>disable_overscan=1</code></p>
+</blockquote>
+<p>按ctrl+x退出，按y确认保存，按回车确定，重启后，即可使用HDMI转VGA转接头。</p>
+<ol start="2">
+<li>在实现过程步骤8中，官网的命令是</li>
+</ol>
+<p><code>rosinstall_generator desktop --rosdistro indigo --deps --wet-only --exclude roslisp --tar &gt; indigo-desktop-wet.rosinstall</code></p>
+<p><code>rosinstall_generator desktop --rosdistro indigo --deps --wet-only --exclude roslisp collada_parser collada_urdf --tar &gt; indigo-desktop-wet.rosinstall</code></p>
+<p>对比正常安装的命令将collada_parser collada_urdf两个容易出错的包排除下载安装，因为目前项目用不到</p>
+<ol start="3">
+<li>官网教程上面在编译整个ROS源码的工作空间前，要安装软件源没有的依赖包，但是这几个依赖包都是robot_model、collada_parser和collada_urdf依赖的，去掉这几个包就不再需要安装软件源没有的依赖包了。实现过程中的第8步和第10步即删除这些报错的软件包。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/树莓派3安装ROS（indigo）技术文档/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-微信开店" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有关微信开店的相关事项"><a href="#有关微信开店的相关事项" class="headerlink" title="有关微信开店的相关事项"></a>有关微信开店的相关事项</h1><p>本文是2016年9月6号调研的。</p>
+<p>首先要申请一个微信公众平台，有三种</p>
+<p><img src="D:\myblog\images\ScreenClip.png" alt=""></p>
+<p>订阅号不可以提供微信支付和高级接口，他这个吴晓波频道是订阅号，</p>
+<p>2016年注册的订阅号暂时不能认证</p>
+<ol>
+<li>如果是2014年8月份之前注册的个人号可以认证，之后的不可以。</li>
+<li>重新注册一个号，用企业身份</li>
+<li>通过他人企业资质认证你的公众号，费用大概 300-500左右，行情在波动</li>
+</ol>
+<p>ps：个人号可能以后会放开认证，但时间不确定。只有认证之后，才可以在底部添加链接。</p>
+<p>微信订阅号申请之后，有一个添加功能插件的地方，</p>
+<p><img src="D:\myblog\images\ScreenClip1.png" alt=""></p>
+<p>微信小店开通之前要开通微信支付，开通微信支付之前必须要通过认证，个人现在不支持认证。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/微信开店/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-使用G2O的总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用G20的总结"><a href="#使用G20的总结" class="headerlink" title="使用G20的总结"></a>使用G20的总结</h1><p>本文参考高翔的博客</p>
+<p>使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。</p>
+<p>第一类：视觉slam使用g2o步骤</p>
+<p><img src="D:\myblog\images\Image6.png" alt=""></p>
+<ol>
+<li>要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.<br>程序部分</li>
+<li>首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的索引；（2）endIndex，读第二张图片的索引，也就是终止的索引；（3）所有关键帧存放的容器keyframes。</li>
+<li>令当前索引为起始索引，提取当前帧的特征点和特征描述子，</li>
+<li>g2o初始化，（1）选择优化方法；（2）初始化求解器；（3）声明g2o优化对象globalOptimizer；（4）向globalOptimizer增加第一个顶点设置其Id，参数是当前索引。将第一个顶点固定，不用优化。</li>
+<li>循环：将图片当前帧放入关键帧中，读下一帧，提取当前帧的特征点和特征描述子。检测其是否是关键帧，不符合条件就跳过，符合就做闭环检测。检测过程如下：（1）计算两帧之间的运动，太近太远都不算匹配上；（2）如果不是闭环，就向g2o中增加这个顶点设置其Id还有上一帧联系的边，并设置连接此边的两个顶点的Id，将此边加入图。</li>
+<li>当前帧如果符合关键帧要求就加入关键帧keyframes。</li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+<li>还要记得修改cmakelist文件如下</li>
+</ol>
+<p><code>cmake_minimum_required(VERSION 2.8)</code><br>    project(g2o_test)<br><code>#Enable support for C++11</code><br><code>SET(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -std=c++0x&quot;)</code><br><code>#设定二进制文件路径</code><br><code>SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)</code><br><code>#设定库文件编译路径</code><br><code>SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)</code><br><code>#设定.cmake文件存放路径</code><br><code>#SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} &quot;{CMAKE_CURRENT_SOURCE_DIR}/cmake_modules&quot;)</code><br><code>LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)</code><br><code>#ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/src)</code><br><code># find g2o lib</code><br><code>find_package(G2O REQUIRED)</code><br><code>IF(G2O_FOUND)</code><br><code>include_directories(${G2O_INCLUDE_DIR})</code><br><code>message(&quot;G2O lib is found:&quot;${G2O_INCLUDE_DIR})</code><br><code>ENDIF(G2O_FOUND)</code><br><code>find_package(Eigen3 REQUIRED)</code><br><code>find_package(CSparse REQUIRED)</code><br><code>#find_package(Cholmod REQUIRED)</code><br><code>include_directories(${CSPARSE_INCLUDE_DIR})</code><br><code>include_directories(${EIGEN3_INCLUDE_DIR})</code><br><code>#include_directories(${CHOLMOD_INCLUDE_DIR})</code><br><code>SET(G2O_LIBS g2o_cli g2o_ext_freeglut_minimal g2o_simulator</code> <code>g2o_solver_slam2d_linear g2o_types_icp g2o_types_slam2d g2o_core g2o_interface g2o_solver_csparse g2o_solver_structure_only g2o_types_sba g2o_types_slam3d g2o_csparse_extension g2o_opengl_helper g2o_solver_dense g2o_stuff g2o_types_sclam2d g2o_parser g2o_solver_pcg g2o_types_data g2o_types_sim3 cxsparse )</code></p>
+<p>第二类：将顶点与边放入.g2o文件中，如下图形式：</p>
+<p><img src="D:\myblog\images\Image8.png" alt=""></p>
+<p>这样省去了添加顶点和边的步骤。我目前将loam中的transformMaintenance节点中</p>
+<p><img src="D:\myblog\images\Image9.png" alt=""></p>
+<p>这一段代码中所有的变量作为顶点，放入到图中，本来想存为txt，但是catkin_make时报错，因此目前只能打印出来，并且由于pubLaserOdometry2Pointer-&gt;publish(laserOdometry2);的频率是10hz，所以我降采样为1hz，在以前长的走廊中重新进行实验，将这些变量打印到命令行中，我手动存入txt，然后按照.g2o文件中的格式作为顶点放入。</p>
+<ol>
+<li>使用 宏函数 声明边和顶点类型，注意注释掉了上面两个头文件<br><code>#include &quot;g2o/types/slam3d/vertex_se3.h&quot;</code><br><code>G2O_USE_TYPE_GROUP(slam3d);</code></li>
+<li>选择优化方法，初始化求解器，声明g2o优化对象globalOptimizer；load文件。 <code>globalOptimizer.load(&quot;./data/test.g2o&quot;)</code></li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+</ol>
+<p>其中”./data/test.g2o’文件点是位姿，边是姿态变换。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/使用G2O的总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-使用G2O步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用G2o步骤"><a href="#使用G2o步骤" class="headerlink" title="使用G2o步骤"></a>使用G2o步骤</h1><blockquote>
+<p> // 选择优化方法</p>
+</blockquote>
+<blockquote>
+<p> <code>typedef g2o::BlockSolver_6_3 SlamBlockSolver;</code></p>
+</blockquote>
+<blockquote>
+<p> <code>typedef g2o::LinearSolverCSparse&lt; SlamBlockSolver::PoseMatrixType &gt; SlamLinearSolver;</code><br> // 初始化求解器<br> <code>SlamLinearSolver* linearSolver = new SlamLinearSolver();</code><br> <code>linearSolver-&gt;setBlockOrdering( false );</code><br> <code>SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );</code><br> <code>g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );</code><br> <code>g2o::SparseOptimizer globalOptimizer;</code>// 最后用的就是这个东东<br> <code>globalOptimizer.setAlgorithm( solver );</code></p>
+<p> // 不要输出调试信息</p>
+<p> <code>globalOptimizer.setVerbose( false );</code></p>
+</blockquote>
+<p>然后，在求解器内添加点和边：</p>
+<blockquote>
+<p>// 添加点</p>
+</blockquote>
+<blockquote>
+<p>g2o::VertexSE3* v = new g2o::VertexSE3();</p>
+</blockquote>
+<blockquote>
+<p>// 设置点v …</p>
+</blockquote>
+<blockquote>
+<p>globalOptimizer.addVertex( v );</p>
+</blockquote>
+<blockquote>
+<p>// 添加边</p>
+</blockquote>
+<blockquote>
+<p>g2o::EdgeSE3* edge = new g2o::EdgeSE3();</p>
+</blockquote>
+<blockquote>
+<p>// 设置边 edge …</p>
+</blockquote>
+<blockquote>
+<p>globalOptimizer.addEdge(edge);</p>
+</blockquote>
+<p>最后，完成优化并存储优化结果：</p>
+<blockquote>
+<p> globalOptimizer.save(“./data/result_before.g2o”);</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.initializeOptimization();</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.optimize( 100 ); //可以指定优化步数</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.save( “./data/result_after.g2o” );</p>
+</blockquote>
+<p>关于代码的一些解释：</p>
+<ol>
+<li>顶点和边的类型</li>
+</ol>
+<p>顶点和边有不同的类型，这要看我们想求解什么问题。由于我们是3D的slam，所以顶点取成了相机姿态：g2o::VertexSE3，而边则是连接两个VertexSE3的边：g2o::EdgeSE3。如果你想用别的类型的顶点（如2Dslam，路标点），你可以看看/usr/local/include/g2o/types/下的文件，基本上涵盖了各种slam的应用，应该能满足你的需求。</p>
+<p>2.优化方法</p>
+<p>g2o允许你使用不同的优化求解器（然而实际效果似乎差别不大）。你可以选用csparse, pcg, cholmod等等。我们这里使用csparse为例啦。</p>
+<p>他们代码里slam步骤</p>
+<ol>
+<li>初始化关键帧序列：FF，并将第一帧f0f0放入FF。</li>
+<li>对于新来的一帧II，计算FF中最后一帧与II的运动，并估计该运动的大小ee。有以下几种可能性：</li>
+</ol>
+<ul>
+<li>若e&gt;Eerrore&gt;Eerror，说明运动太大，可能是计算错误，丢弃该帧； </li>
+<li>若没有匹配上（match太少），说明该帧图像质量不高，丢弃； </li>
+<li>若e&lt;Ekeye&lt;Ekey，说明离前一个关键帧很近，同样丢弃；</li>
+<li>剩下的情况，只有是特征匹配成功，运动估计正确，同时又离上一个关键帧有一定距离，则把II作为新的关键帧，进入回环检测程序：</li>
+</ul>
+<p>近距离回环：匹配II与FF末尾mm个关键帧。匹配成功时，在图里增加一条边。</p>
+<p>随机回环：随机在FF里取nn个帧，与II进行匹配。若匹配上，在图里增加一条边。</p>
+<p>将II放入FF末尾。若有新的数据，则回2； 若无，则进行优化与地图拼接。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/使用G2O步骤/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 

@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="使用G20的总结本文参考高翔的博客 使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。 第一类：视觉slam使用g2o步骤   要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.程序部分 首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/10/03/hello-world/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/使用G2O的总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="使用G20的总结本文参考高翔的博客 使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。 第一类：视觉slam使用g2o步骤   要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.程序部分 首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-03T00:13:10.621Z">
+<meta property="og:image" content="d:/myblog/images/Image6.png">
+<meta property="og:image" content="d:/myblog/images/Image8.png">
+<meta property="og:image" content="d:/myblog/images/Image9.png">
+<meta property="og:updated_time" content="2018-11-13T08:22:24.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="使用G20的总结本文参考高翔的博客 使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。 第一类：视觉slam使用g2o步骤   要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.程序部分 首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的">
+<meta name="twitter:image" content="d:/myblog/images/Image6.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -136,35 +140,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用G2O的总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Hello World
-    </h1>
-  
-
-        
-        <a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="使用G20的总结"><a href="#使用G20的总结" class="headerlink" title="使用G20的总结"></a>使用G20的总结</h1><p>本文参考高翔的博客</p>
+<p>使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。</p>
+<p>第一类：视觉slam使用g2o步骤</p>
+<p><img src="D:\myblog\images\Image6.png" alt=""></p>
+<ol>
+<li>要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.<br>程序部分</li>
+<li>首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的索引；（2）endIndex，读第二张图片的索引，也就是终止的索引；（3）所有关键帧存放的容器keyframes。</li>
+<li>令当前索引为起始索引，提取当前帧的特征点和特征描述子，</li>
+<li>g2o初始化，（1）选择优化方法；（2）初始化求解器；（3）声明g2o优化对象globalOptimizer；（4）向globalOptimizer增加第一个顶点设置其Id，参数是当前索引。将第一个顶点固定，不用优化。</li>
+<li>循环：将图片当前帧放入关键帧中，读下一帧，提取当前帧的特征点和特征描述子。检测其是否是关键帧，不符合条件就跳过，符合就做闭环检测。检测过程如下：（1）计算两帧之间的运动，太近太远都不算匹配上；（2）如果不是闭环，就向g2o中增加这个顶点设置其Id还有上一帧联系的边，并设置连接此边的两个顶点的Id，将此边加入图。</li>
+<li>当前帧如果符合关键帧要求就加入关键帧keyframes。</li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+<li>还要记得修改cmakelist文件如下</li>
+</ol>
+<p><code>cmake_minimum_required(VERSION 2.8)</code><br>    project(g2o_test)<br><code>#Enable support for C++11</code><br><code>SET(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -std=c++0x&quot;)</code><br><code>#设定二进制文件路径</code><br><code>SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)</code><br><code>#设定库文件编译路径</code><br><code>SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)</code><br><code>#设定.cmake文件存放路径</code><br><code>#SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} &quot;{CMAKE_CURRENT_SOURCE_DIR}/cmake_modules&quot;)</code><br><code>LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)</code><br><code>#ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/src)</code><br><code># find g2o lib</code><br><code>find_package(G2O REQUIRED)</code><br><code>IF(G2O_FOUND)</code><br><code>include_directories(${G2O_INCLUDE_DIR})</code><br><code>message(&quot;G2O lib is found:&quot;${G2O_INCLUDE_DIR})</code><br><code>ENDIF(G2O_FOUND)</code><br><code>find_package(Eigen3 REQUIRED)</code><br><code>find_package(CSparse REQUIRED)</code><br><code>#find_package(Cholmod REQUIRED)</code><br><code>include_directories(${CSPARSE_INCLUDE_DIR})</code><br><code>include_directories(${EIGEN3_INCLUDE_DIR})</code><br><code>#include_directories(${CHOLMOD_INCLUDE_DIR})</code><br><code>SET(G2O_LIBS g2o_cli g2o_ext_freeglut_minimal g2o_simulator</code> <code>g2o_solver_slam2d_linear g2o_types_icp g2o_types_slam2d g2o_core g2o_interface g2o_solver_csparse g2o_solver_structure_only g2o_types_sba g2o_types_slam3d g2o_csparse_extension g2o_opengl_helper g2o_solver_dense g2o_stuff g2o_types_sclam2d g2o_parser g2o_solver_pcg g2o_types_data g2o_types_sim3 cxsparse )</code></p>
+<p>第二类：将顶点与边放入.g2o文件中，如下图形式：</p>
+<p><img src="D:\myblog\images\Image8.png" alt=""></p>
+<p>这样省去了添加顶点和边的步骤。我目前将loam中的transformMaintenance节点中</p>
+<p><img src="D:\myblog\images\Image9.png" alt=""></p>
+<p>这一段代码中所有的变量作为顶点，放入到图中，本来想存为txt，但是catkin_make时报错，因此目前只能打印出来，并且由于pubLaserOdometry2Pointer-&gt;publish(laserOdometry2);的频率是10hz，所以我降采样为1hz，在以前长的走廊中重新进行实验，将这些变量打印到命令行中，我手动存入txt，然后按照.g2o文件中的格式作为顶点放入。</p>
+<ol>
+<li>使用 宏函数 声明边和顶点类型，注意注释掉了上面两个头文件<br><code>#include &quot;g2o/types/slam3d/vertex_se3.h&quot;</code><br><code>G2O_USE_TYPE_GROUP(slam3d);</code></li>
+<li>选择优化方法，初始化求解器，声明g2o优化对象globalOptimizer；load文件。 <code>globalOptimizer.load(&quot;./data/test.g2o&quot;)</code></li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+</ol>
+<p>其中”./data/test.g2o’文件点是位姿，边是姿态变换。</p>
 
       
 
@@ -244,7 +250,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/10/03/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/使用G2O的总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,7 +264,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/11/22/linux系统的一些常用软件及安装方法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/22/微信开店/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -267,6 +273,11 @@
       </div>
     </a>
   
+  
+    <a href="/2018/11/22/使用G2O步骤/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
