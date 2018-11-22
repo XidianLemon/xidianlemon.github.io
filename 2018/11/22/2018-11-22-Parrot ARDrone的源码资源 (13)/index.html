@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="有关G2O安装和高翔G2O博客的总结g2o官方下的始终配置不好，后来找到gaoxiang的github地址，下载了他给的g2o，还有一个东西叫qglviewer，安装之后，进入到他g2o文件夹下，新建build文件，然后使用命令ccmake ..将下图中的 把G2O_BUILD_APPS关掉，这个东西是g2o_viewer，不用他了，  然后按c配置，再按q退出。之后使用make命令。这样g2o安">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (13)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="有关G2O安装和高翔G2O博客的总结g2o官方下的始终配置不好，后来找到gaoxiang的github地址，下载了他给的g2o，还有一个东西叫qglviewer，安装之后，进入到他g2o文件夹下，新建build文件，然后使用命令ccmake ..将下图中的 把G2O_BUILD_APPS关掉，这个东西是g2o_viewer，不用他了，  然后按c配置，再按q退出。之后使用make命令。这样g2o安">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="d:/myblog/images/Image10.png">
+<meta property="og:image" content="d:/myblog/images/Image11.png">
+<meta property="og:image" content="d:/myblog/images/Image12.png">
+<meta property="og:image" content="d:/myblog/images/Image13.png">
+<meta property="og:updated_time" content="2018-11-13T09:25:01.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="有关G2O安装和高翔G2O博客的总结g2o官方下的始终配置不好，后来找到gaoxiang的github地址，下载了他给的g2o，还有一个东西叫qglviewer，安装之后，进入到他g2o文件夹下，新建build文件，然后使用命令ccmake ..将下图中的 把G2O_BUILD_APPS关掉，这个东西是g2o_viewer，不用他了，  然后按c配置，再按q退出。之后使用make命令。这样g2o安">
+<meta name="twitter:image" content="d:/myblog/images/Image10.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,220 +141,160 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-11-22-Parrot ARDrone的源码资源 (13)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有关G2O安装和高翔G2O博客的总结"><a href="#有关G2O安装和高翔G2O博客的总结" class="headerlink" title="有关G2O安装和高翔G2O博客的总结"></a>有关G2O安装和高翔G2O博客的总结</h1><p>g2o官方下的始终配置不好，后来找到gaoxiang的github地址，下载了他给的g2o，还有一个东西叫qglviewer，安装之后，进入到他g2o文件夹下，新建build文件，然后使用命令ccmake ..将下图中的 把G2O_BUILD_APPS关掉<br>，这个东西是g2o_viewer，不用他了，</p>
+<p><img src="D:\myblog\images\Image10.png" alt=""></p>
+<p>然后按c配置，再按q退出。之后使用make命令。这样g2o安装完成。<br>注意：这里不能用命令：cmake ..因为运行这个命令之后报错编译不过，是因为目前最新版本的qglviewer使用的是基于qt5，而ubuntu14.04默认是qt4。</p>
+<p>目前不能使用g2o_viewer这个gui，因为他也是基于qt5的。</p>
+<p>运行他给的例程的时候，他给出的<img src="D:\myblog\images\Image11.png" alt="">不能放在他的例程下，因为他的例程好像使用了希腊字母，I V，导致文件找不到，我将其放到了另一个文件夹下就好用了。当时出现的提示是这样的：</p>
+<p><img src="D:\myblog\images\Image12.png" alt=""></p>
+<p>一定要进入他的文件夹下，</p>
+<p><img src="D:\myblog\images\Image13.png" alt=""></p>
+<p>在这里使用bin/generate_pointcloud等命令来运行他的二进制文件。</p>
+<p>在运行例程5的时候，出现点云不显示的问题，这时在pcd_viewer窗口下按r键来重置视角快速查看点云。</p>
+<p>关于图像上下翻转问题，是因为opencv定义的坐标系和pcl_viewer显示坐标系不同，opencv是x右y下，而pcl显示是x右y上。解决方法：找到群主程序image2PointCloud函数中，把计算点空间坐标的公式的p.y值添加负号，这样y方向就可以正常显示了</p>
+<p>opencv版本要用2.4.x的，不能用最新的3.x的。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (7)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (13)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (6)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (5)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (15)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (12)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (4)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.088Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (1)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (17)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.086Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/03/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -369,8 +318,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="ROS调试常用命令rosnode 显示当前运行的ROS节点信息。rosnode list 指令列出活跃的节点: $ rosnode list rosnode info 命令返回的是关于一个特定节点的信息。 $ rosnode info 节点名 使用另外一个 rosnode 指令, ping, 来测试: $ rosnode ping 节点名 查看图形化的节点话题，每次发布消息时候，可能需要再刷新一下">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ROS调试常用命令rosnode 显示当前运行的ROS节点信息。rosnode list 指令列出活跃的节点: $ rosnode list rosnode info 命令返回的是关于一个特定节点的信息。 $ rosnode info 节点名 使用另外一个 rosnode 指令, ping, 来测试: $ rosnode ping 节点名 查看图形化的节点话题，每次发布消息时候，可能需要再刷新一下">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-25T08:25:37.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="ROS调试常用命令rosnode 显示当前运行的ROS节点信息。rosnode list 指令列出活跃的节点: $ rosnode list rosnode info 命令返回的是关于一个特定节点的信息。 $ rosnode info 节点名 使用另外一个 rosnode 指令, ping, 来测试: $ rosnode ping 节点名 查看图形化的节点话题，每次发布消息时候，可能需要再刷新一下">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,220 +136,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-11-22-Parrot ARDrone的源码资源 (2)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ROS调试常用命令"><a href="#ROS调试常用命令" class="headerlink" title="ROS调试常用命令"></a>ROS调试常用命令</h1><p>rosnode 显示当前运行的ROS节点信息。rosnode list 指令列出活跃的节点:</p>
+<p><code>$ rosnode list</code></p>
+<p>rosnode info 命令返回的是关于一个特定节点的信息。</p>
+<pre><code>$ rosnode info 节点名
+</code></pre><p>使用另外一个 rosnode 指令, ping, 来测试:</p>
+<pre><code>$ rosnode ping 节点名
+</code></pre><p>查看图形化的节点话题，每次发布消息时候，可能需要再刷新一下这个gui才可以显示新的</p>
+<pre><code>$ rosrun rqt_graph rqt_graph
+</code></pre><p>rostopic echo可以显示在某个话题上发布的数据。要等到话题发布消息的时候，才会有数据。</p>
+<pre><code>rostopic echo [topic]
+</code></pre><p>rostopic list能够列出所有当前订阅和发布的话题。</p>
+<p>显示出有关所发布和订阅的话题及其类型的详细信息。</p>
+<pre><code>$ rostopic list -v
+</code></pre><p>rostopic type 命令用来查看所发布话题的消息类型。</p>
+<pre><code>$ rostopic type [topic]
+</code></pre><p>我们可以使用rosmsg命令来查看消息的详细情况</p>
+<p><code>$ rosmsg show</code> 这个地方应该是和话题类型一样</p>
+<p><code>rostopic pub</code>可以把数据发布到当前某个正在广播的话题上。</p>
+<p><code>rostopic hz</code>命令可以用来查看数据发布的频率。</p>
+<p><code>rqt_plot</code>命令可以实时显示一个发布到某个话题上的数据变化图形。</p>
+<pre><code>$ rosrun rqt_plot rqt_plot
+</code></pre><p><code>rosservice list</code>         输出可用服务的信息<br><code>rosservice type</code>         输出服务类型<br><code>rosservice call</code>         调用带参数的服务</p>
+<p>rosparam使得我们能够存储并操作ROS 参数服务器（Parameter Server）上的数据。</p>
+<p><code>rosparam set</code>            设置参数<br><code>rosparam get</code>            获取参数<br><code>rosparam load</code>           从文件读取参数<br><code>rosparam dump</code>           向文件中写入参数<br><code>rosparam delete</code>         删除参数<br><code>rosparam list</code>           列出参数名，查看节点在参数服务器上有几个参数</p>
+<p>建立一个用于录制的临时目录，然后在该目录下运行rosbag record命令，并附加-a选项，该选项表示将当前发布的所有话题数据都录制保存到一个bag文件中。<br>现在检查看这个临时中的内容，你应该会看到一个以年份、日期和时间命名并以.bag作为后缀的文件。这个就是bag文件，它包含rosbag record运行期间所有节点发布的话题。</p>
+<pre><code>rosbag record -a
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (7)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (6)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (5)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (1)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (4)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.088Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (1)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (17)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.086Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/03/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -369,8 +327,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

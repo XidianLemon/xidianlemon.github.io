@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="有关对G20的总结本文参考高翔的博客 使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。 第一类：视觉slam使用g2o步骤   要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.程序部分 首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (14)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="有关对G20的总结本文参考高翔的博客 使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。 第一类：视觉slam使用g2o步骤   要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.程序部分 首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="d:/myblog/images/Image6.png">
+<meta property="og:image" content="d:/myblog/images/Image8.png">
+<meta property="og:image" content="d:/myblog/images/Image9.png">
+<meta property="og:updated_time" content="2018-11-13T07:52:57.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="有关对G20的总结本文参考高翔的博客 使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。 第一类：视觉slam使用g2o步骤   要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.程序部分 首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始">
+<meta name="twitter:image" content="d:/myblog/images/Image6.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,220 +140,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-11-22-Parrot ARDrone的源码资源 (14)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有关对G20的总结"><a href="#有关对G20的总结" class="headerlink" title="有关对G20的总结"></a>有关对G20的总结</h1><p>本文参考高翔的博客</p>
+<p>使用g2o有两类方法，第一类是动态地向图中加入顶点与边，待加入完成后开始优化。第二类是将顶点与边放入.g2o文件中，在程序中使用load函数得到所有的顶点与边，完成优化。</p>
+<p>第一类：视觉slam使用g2o步骤</p>
+<p><img src="D:\myblog\images\Image6.png" alt=""></p>
+<ol>
+<li>要处理的图片放到这两个文件夹中，每张图片以数字命名，从1到750.<br>程序部分</li>
+<li>首先声明两个变量（1）startIndex，读第一张图片的索引，也就是起始的索引；（2）endIndex，读第二张图片的索引，也就是终止的索引；（3）所有关键帧存放的容器keyframes。</li>
+<li>令当前索引为起始索引，提取当前帧的特征点和特征描述子，</li>
+<li>g2o初始化，（1）选择优化方法；（2）初始化求解器；（3）声明g2o优化对象globalOptimizer；（4）向globalOptimizer增加第一个顶点设置其Id，参数是当前索引。将第一个顶点固定，不用优化。</li>
+<li>循环：将图片当前帧放入关键帧中，读下一帧，提取当前帧的特征点和特征描述子。检测其是否是关键帧，不符合条件就跳过，符合就做闭环检测。检测过程如下：（1）计算两帧之间的运动，太近太远都不算匹配上；（2）如果不是闭环，就向g2o中增加这个顶点设置其Id还有上一帧联系的边，并设置连接此边的两个顶点的Id，将此边加入图。</li>
+<li>当前帧如果符合关键帧要求就加入关键帧keyframes。</li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+<li>还要记得修改cmakelist文件如下</li>
+</ol>
+<p><code>cmake_minimum_required(VERSION 2.8)</code><br>    project(g2o_test)<br><code>#Enable support for C++11</code><br><code>SET(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -std=c++0x&quot;)</code><br><code>#设定二进制文件路径</code><br><code>SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)</code><br><code>#设定库文件编译路径</code><br><code>SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)</code><br><code>#设定.cmake文件存放路径</code><br><code>#SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} &quot;{CMAKE_CURRENT_SOURCE_DIR}/cmake_modules&quot;)</code><br><code>LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)</code><br><code>#ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/src)</code><br><code># find g2o lib</code><br><code>find_package(G2O REQUIRED)</code><br><code>IF(G2O_FOUND)</code><br><code>include_directories(${G2O_INCLUDE_DIR})</code><br><code>message(&quot;G2O lib is found:&quot;${G2O_INCLUDE_DIR})</code><br><code>ENDIF(G2O_FOUND)</code><br><code>find_package(Eigen3 REQUIRED)</code><br><code>find_package(CSparse REQUIRED)</code><br><code>#find_package(Cholmod REQUIRED)</code><br><code>include_directories(${CSPARSE_INCLUDE_DIR})</code><br><code>include_directories(${EIGEN3_INCLUDE_DIR})</code><br><code>#include_directories(${CHOLMOD_INCLUDE_DIR})</code><br><code>SET(G2O_LIBS g2o_cli g2o_ext_freeglut_minimal g2o_simulator</code> <code>g2o_solver_slam2d_linear g2o_types_icp g2o_types_slam2d g2o_core g2o_interface g2o_solver_csparse g2o_solver_structure_only g2o_types_sba g2o_types_slam3d g2o_csparse_extension g2o_opengl_helper g2o_solver_dense g2o_stuff g2o_types_sclam2d g2o_parser g2o_solver_pcg g2o_types_data g2o_types_sim3 cxsparse )</code></p>
+<p>第二类：将顶点与边放入.g2o文件中，如下图形式：</p>
+<p><img src="D:\myblog\images\Image8.png" alt=""></p>
+<p>这样省去了添加顶点和边的步骤。我目前将loam中的transformMaintenance节点中</p>
+<p><img src="D:\myblog\images\Image9.png" alt=""></p>
+<p>这一段代码中所有的变量作为顶点，放入到图中，本来想存为txt，但是catkin_make时报错，因此目前只能打印出来，并且由于pubLaserOdometry2Pointer-&gt;publish(laserOdometry2);的频率是10hz，所以我降采样为1hz，在以前长的走廊中重新进行实验，将这些变量打印到命令行中，我手动存入txt，然后按照.g2o文件中的格式作为顶点放入。</p>
+<ol>
+<li>使用 宏函数 声明边和顶点类型，注意注释掉了上面两个头文件<br><code>#include &quot;g2o/types/slam3d/vertex_se3.h&quot;</code><br><code>G2O_USE_TYPE_GROUP(slam3d);</code></li>
+<li>选择优化方法，初始化求解器，声明g2o优化对象globalOptimizer；load文件。 <code>globalOptimizer.load(&quot;./data/test.g2o&quot;)</code></li>
+<li>g2o优化，指定优化步数，优化结果保存。</li>
+</ol>
+<p>其中”./data/test.g2o’文件点是位姿，边是姿态变换。</p>
+<p>用的他之前自带的边，就是说g2o官方例程提供的边的定义。这样做了之后，目前已经可以优化了，但是边不对，优化的一定是不对的。<br>目前存在的问题是，点在slam使用g2o方法中的含义是：当前的位姿，而边在slam使用g2o方法中的含义是两帧间的运动，我不理解的问题是：我现在点有了，边在视觉slam中是两帧间的运动，那我的边是啥，指定了边，就可以正确地优化了。（目前已经确定边是姿态变换，也就是运动估计）</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (7)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (14)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (6)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (5)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (16)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (15)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (4)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.088Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (1)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (17)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.086Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/03/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -369,8 +332,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

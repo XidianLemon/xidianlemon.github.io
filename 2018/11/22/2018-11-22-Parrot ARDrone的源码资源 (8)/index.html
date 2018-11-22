@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="使用G2o步骤  // 选择优化方法    typedef g2o::BlockSolver_6_3 SlamBlockSolver;    typedef g2o::LinearSolverCSparse&amp;lt; SlamBlockSolver::PoseMatrixType &amp;gt; SlamLinearSolver; // 初始化求解器 SlamLinearSolver* linearSol">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (8)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用G2o步骤  // 选择优化方法    typedef g2o::BlockSolver_6_3 SlamBlockSolver;    typedef g2o::LinearSolverCSparse&amp;lt; SlamBlockSolver::PoseMatrixType &amp;gt; SlamLinearSolver; // 初始化求解器 SlamLinearSolver* linearSol">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-16T03:26:51.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="使用G2o步骤  // 选择优化方法    typedef g2o::BlockSolver_6_3 SlamBlockSolver;    typedef g2o::LinearSolverCSparse&amp;lt; SlamBlockSolver::PoseMatrixType &amp;gt; SlamLinearSolver; // 初始化求解器 SlamLinearSolver* linearSol">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,220 +136,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-11-22-Parrot ARDrone的源码资源 (8)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用G2o步骤"><a href="#使用G2o步骤" class="headerlink" title="使用G2o步骤"></a>使用G2o步骤</h1><blockquote>
+<p> // 选择优化方法</p>
+</blockquote>
+<blockquote>
+<p> <code>typedef g2o::BlockSolver_6_3 SlamBlockSolver;</code></p>
+</blockquote>
+<blockquote>
+<p> <code>typedef g2o::LinearSolverCSparse&lt; SlamBlockSolver::PoseMatrixType &gt; SlamLinearSolver;</code><br> // 初始化求解器<br> <code>SlamLinearSolver* linearSolver = new SlamLinearSolver();</code><br> <code>linearSolver-&gt;setBlockOrdering( false );</code><br> <code>SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );</code><br> <code>g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );</code><br> <code>g2o::SparseOptimizer globalOptimizer;</code>// 最后用的就是这个东东<br> <code>globalOptimizer.setAlgorithm( solver );</code></p>
+<p> // 不要输出调试信息</p>
+<p> <code>globalOptimizer.setVerbose( false );</code></p>
+</blockquote>
+<p>然后，在求解器内添加点和边：</p>
+<blockquote>
+<p>// 添加点</p>
+</blockquote>
+<blockquote>
+<p>g2o::VertexSE3* v = new g2o::VertexSE3();</p>
+</blockquote>
+<blockquote>
+<p>// 设置点v …</p>
+</blockquote>
+<blockquote>
+<p>globalOptimizer.addVertex( v );</p>
+</blockquote>
+<blockquote>
+<p>// 添加边</p>
+</blockquote>
+<blockquote>
+<p>g2o::EdgeSE3* edge = new g2o::EdgeSE3();</p>
+</blockquote>
+<blockquote>
+<p>// 设置边 edge …</p>
+</blockquote>
+<blockquote>
+<p>globalOptimizer.addEdge(edge);</p>
+</blockquote>
+<p>最后，完成优化并存储优化结果：</p>
+<blockquote>
+<p> globalOptimizer.save(“./data/result_before.g2o”);</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.initializeOptimization();</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.optimize( 100 ); //可以指定优化步数</p>
+</blockquote>
+<blockquote>
+<p> globalOptimizer.save( “./data/result_after.g2o” );</p>
+</blockquote>
+<p>关于代码的一些解释：</p>
+<ol>
+<li>顶点和边的类型</li>
+</ol>
+<p>顶点和边有不同的类型，这要看我们想求解什么问题。由于我们是3D的slam，所以顶点取成了相机姿态：g2o::VertexSE3，而边则是连接两个VertexSE3的边：g2o::EdgeSE3。如果你想用别的类型的顶点（如2Dslam，路标点），你可以看看/usr/local/include/g2o/types/下的文件，基本上涵盖了各种slam的应用，应该能满足你的需求。</p>
+<p>2.优化方法</p>
+<p>g2o允许你使用不同的优化求解器（然而实际效果似乎差别不大）。你可以选用csparse, pcg, cholmod等等。我们这里使用csparse为例啦。</p>
+<p>他们代码里slam步骤</p>
+<ol>
+<li>初始化关键帧序列：FF，并将第一帧f0f0放入FF。</li>
+<li>对于新来的一帧II，计算FF中最后一帧与II的运动，并估计该运动的大小ee。有以下几种可能性：</li>
+</ol>
+<ul>
+<li>若e&gt;Eerrore&gt;Eerror，说明运动太大，可能是计算错误，丢弃该帧； </li>
+<li>若没有匹配上（match太少），说明该帧图像质量不高，丢弃； </li>
+<li>若e&lt;Ekeye&lt;Ekey，说明离前一个关键帧很近，同样丢弃；</li>
+<li>剩下的情况，只有是特征匹配成功，运动估计正确，同时又离上一个关键帧有一定距离，则把II作为新的关键帧，进入回环检测程序：</li>
+</ul>
+<p>近距离回环：匹配II与FF末尾mm个关键帧。匹配成功时，在图里增加一条边。</p>
+<p>随机回环：随机在FF里取nn个帧，与II进行匹配。若匹配上，在图里增加一条边。</p>
+<p>将II放入FF末尾。若有新的数据，则回2； 若无，则进行优化与地图拼接。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (7)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (8)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (6)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (5)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (9)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (7)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (4)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.088Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (1)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (17)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.086Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/03/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -369,8 +371,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,15 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行这个问题其实很大部分都是安卓的问题，少部分是因为涉及jni。首先说安卓上的问题，复制另一个程序中的代码，应当注意的地方： 1.复制进去时候是在主类里的，而主类里setcontentview又和布局文件分不开，那么我在这里把类和布局文件一起讲。在主类里，要注意的地方：①包名最开始的地方，包名，不改会出错误， 2.需要注意这个地方，">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行这个问题其实很大部分都是安卓的问题，少部分是因为涉及jni。首先说安卓上的问题，复制另一个程序中的代码，应当注意的地方： 1.复制进去时候是在主类里的，而主类里setcontentview又和布局文件分不开，那么我在这里把类和布局文件一起讲。在主类里，要注意的地方：①包名最开始的地方，包名，不改会出错误， 2.需要注意这个地方，">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="d:/myblog/images/Image27.png">
+<meta property="og:image" content="d:/myblog/images/Image28.png">
+<meta property="og:image" content="d:/myblog/images/Image29.png">
+<meta property="og:image" content="d:/myblog/images/Image30.png">
+<meta property="og:image" content="d:/myblog/images/Image31.png">
+<meta property="og:image" content="d:/myblog/images/Image32.png">
+<meta property="og:image" content="d:/myblog/images/Image33.png">
+<meta property="og:image" content="d:/myblog/images/Image34.png">
+<meta property="og:image" content="d:/myblog/images/Image35.png">
+<meta property="og:image" content="d:/myblog/images/Image36.png">
+<meta property="og:image" content="d:/myblog/images/Image37.png">
+<meta property="og:updated_time" content="2018-11-16T03:53:11.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行这个问题其实很大部分都是安卓的问题，少部分是因为涉及jni。首先说安卓上的问题，复制另一个程序中的代码，应当注意的地方： 1.复制进去时候是在主类里的，而主类里setcontentview又和布局文件分不开，那么我在这里把类和布局文件一起讲。在主类里，要注意的地方：①包名最开始的地方，包名，不改会出错误， 2.需要注意这个地方，">
+<meta name="twitter:image" content="d:/myblog/images/Image27.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,220 +148,156 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-11-22-Parrot ARDrone的源码资源 (3)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行"><a href="#从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行" class="headerlink" title="从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行"></a>从网上下到的图像拼接程序，新建一个程序，把里面的代码复制进去，不能运行</h1><p>这个问题其实很大部分都是安卓的问题，少部分是因为涉及jni。<br>首先说安卓上的问题，复制另一个程序中的代码，应当注意的地方：</p>
+<p>1.复制进去时候是在主类里的，而主类里setcontentview又和布局文件分不开，那么我在这里把类和布局文件一起讲。在主类里，要注意的地方：①包名<img src="D:\myblog\images\Image27.png" alt=""><br>最开始的地方，包名，不改会出错误，</p>
+<p>2.需要注意<img src="D:\myblog\images\Image28.png" alt="">这个地方，类名要匹配你新建工程时候的类名。匹配后，就算暂时会出错，也不是这里的错误，要去底下找了。</p>
+<p>3.在oncreate这个生命周期函数中，要记得这些函数的先后顺序，不然会进不去程序<img src="D:\myblog\images\Image29.png" alt="">在logcat里会报错<img src="D:\myblog\images\Image30.png" alt=""><img src="D:\myblog\images\Image31.png" alt="">布局文件要修改名字。要对应上。</p>
+<p>第二点要注意的地方是androidmanifest.xml文件下，这里需要注意的地方还是比较多的，而且都是比较不容易发现的坑人错误：</p>
+<p>1.首先是这个包名，<img src="D:\myblog\images\Image32.png" alt="">这个如果不改的话，就必须在MainActivity.java文件下import 你复制过来的这个包的.R文件，就是之前一直不太理解的那个import com.example.time.R与其这么麻烦的弄这个，还不如直接在MainActivity.java里用什么包名，直接就在AndroidManifest.xml文件下直接用什么包名。</p>
+<p>2.<img src="D:\myblog\images\Image33.png" alt="">接着就是在application里，需要注意的地方就是这个android:name=一定要是你自己定义的包名类名，而不是你复制过来，他的包名类名，这样程序会报错，根本进不去程序，抛出异常<br><img src="D:\myblog\images\Image34.png" alt=""><br>看异常类型是runtime异常，他说那意思不能实例化这个包的类，没有找到他这个类在这个路径下。<br>权限要注意<img src="D:\myblog\images\Image35.png" alt="">这个地方有可能会用到存储，读取sd卡，摄像头操作等权限问题，所以这些权限要加进去，也包括一些这个东西<img src="D:\myblog\images\Image36.png" alt=""></p>
+<p>第三点，一个比较容易忽视的地方，就是本地方法，c那边的程序头的地方<img src="D:\myblog\images\Image37.png" alt="">很容易忘记修改，这个地方要把jnicall后面改成与你包名类名方法名相对应。不然点击button时候，也会抛出异常，找不到本地对象。<br>最后就是环境配置了，该转换c的想着转换成c，再去加builder和ndk的一些设置和opencv4android的一些设置。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (7)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (6)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (5)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (4)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (4)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (3)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.088Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (2)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (1)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.087Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/2018-11-22-Parrot ARDrone的源码资源 (17)/" class="archive-article-date">
-  	<time datetime="2018-11-22T03:05:41.086Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/03/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-03T00:13:10.621Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/03/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -369,8 +321,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
